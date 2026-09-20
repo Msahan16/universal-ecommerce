@@ -172,7 +172,7 @@
             </a>
             <div class="d-flex align-items-center justify-content-between text-xs text-slate-400 mt-2">
                 <span>{{ Auth::user()->name }}</span>
-                <form method="POST" action="{{ route('logout') }}">
+                <form method="POST" action="{{ route('admin.logout') }}">
                     @csrf
                     <button type="submit" class="text-rose-400 hover:text-rose-300 bg-transparent border-0 p-0 text-xs">
                         Logout

@@ -11,11 +11,11 @@ class AdminMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         if (!auth()->check()) {
-            return redirect()->route('login');
+            return redirect()->route('admin.login');
         }
 
         if (!auth()->user()->is_admin) {
-            abort(403);
+            return redirect()->route('home')->with('error', 'Unauthorized access: Administrator account required.');
         }
 
         return $next($request);

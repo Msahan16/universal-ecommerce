@@ -1,7 +1,7 @@
 <x-guest-layout>
     <div class="mb-4 text-center">
-        <h3 class="fs-4 fw-extrabold text-slate-900 mb-1">Welcome Back</h3>
-        <p class="text-slate-500 text-xs mb-0">Sign in to your account or access the admin panel</p>
+        <h3 class="fs-4 fw-extrabold text-slate-900 mb-1">Customer Sign In</h3>
+        <p class="text-slate-500 text-xs mb-0">Sign in to track orders, manage addresses, and save favorites</p>
     </div>
 
     <!-- Session Status -->
@@ -13,9 +13,7 @@
         <!-- Email Address -->
         <div class="mb-3">
             <label for="email" class="form-label text-xs fw-bold text-slate-700">Email Address</label>
-            <div class="position-relative">
-                <input id="email" class="form-control rounded-xl border-slate-200 ps-4 text-sm" type="email" name="email" value="{{ old('email') }}" required autofocus autocomplete="username" placeholder="name@example.com">
-            </div>
+            <input id="email" class="form-control rounded-xl border-slate-200 ps-4 text-sm" type="email" name="email" value="{{ old('email') }}" required autofocus autocomplete="username" placeholder="name@example.com">
             <x-input-error :messages="$errors->get('email')" class="mt-1" />
         </div>
 
@@ -39,27 +37,14 @@
             <label for="remember_me" class="form-check-label text-xs text-slate-600">Remember my session</label>
         </div>
 
-        <button type="submit" class="btn btn-brand-primary w-100 rounded-xl py-2.5 fw-bold text-sm shadow-md mb-3">
+        <button type="submit" class="btn btn-brand-primary w-100 rounded-xl py-2.5 fw-bold text-sm shadow-md mb-4">
             Sign In to Account
         </button>
 
-        <!-- Quick 1-Click Demo Login Fill -->
-        <div class="p-3 bg-slate-50 rounded-2xl border border-slate-100 mb-3 text-center">
-            <span class="text-xs text-slate-400 font-bold uppercase tracking-wider d-block mb-2">⚡ Quick 1-Click Demo Fill:</span>
-            <div class="d-flex gap-2 justify-content-center">
-                <button type="button" class="btn btn-sm btn-dark rounded-pill px-3 text-xs fw-semibold" onclick="document.getElementById('email').value='admin@example.com'; document.getElementById('password').value='password';">
-                    <i class="bi bi-shield-lock me-1"></i> Admin
-                </button>
-                <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-3 text-xs fw-semibold" onclick="document.getElementById('email').value='customer@example.com'; document.getElementById('password').value='password';">
-                    <i class="bi bi-person me-1"></i> Customer
-                </button>
-            </div>
-        </div>
-
-        <div class="text-center text-xs text-slate-500 pt-2 border-top">
+        <div class="text-center text-xs text-slate-500 pt-3 border-top">
             Don't have an account yet? 
             <a href="{{ route('register') }}" class="text-blue-600 fw-bold text-decoration-none ms-1">
-                Create Account
+                Create Free Account
             </a>
         </div>
     </form>
