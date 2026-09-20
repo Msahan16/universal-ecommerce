@@ -75,6 +75,8 @@ Route::middleware('auth')->group(function () {
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/login', [\App\Http\Controllers\Admin\AuthController::class, 'showLogin'])->name('login');
     Route::post('/login', [\App\Http\Controllers\Admin\AuthController::class, 'login'])->name('login.post');
+    Route::get('/register', [\App\Http\Controllers\Admin\AuthController::class, 'showRegister'])->name('register');
+    Route::post('/register', [\App\Http\Controllers\Admin\AuthController::class, 'register'])->name('register.post');
     Route::post('/logout', [\App\Http\Controllers\Admin\AuthController::class, 'logout'])->name('logout');
 });
 

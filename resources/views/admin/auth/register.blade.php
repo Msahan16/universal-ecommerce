@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin Portal Login - {{ \App\Models\SiteSetting::get('site_name', 'Universal Commerce') }}</title>
+    <title>Admin Registration - {{ \App\Models\SiteSetting::get('site_name', 'Universal Commerce') }}</title>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,58 +37,59 @@
 </head>
 <body class="d-flex align-items-center justify-content-center py-5 min-vh-100">
 
-    <div class="container" style="max-width: 440px;">
+    <div class="container" style="max-width: 480px;">
         <div class="text-center mb-4">
             <div class="w-16 h-16 rounded-2xl bg-blue-600 text-white d-flex align-items-center justify-content-center mx-auto mb-3 shadow-lg fs-2">
-                <i class="bi bi-shield-lock-fill"></i>
+                <i class="bi bi-person-badge-fill"></i>
             </div>
-            <h4 class="fw-extrabold text-white tracking-tight mb-1">Admin Console</h4>
+            <h4 class="fw-extrabold text-white tracking-tight mb-1">Admin Portal Registration</h4>
             <span class="badge bg-slate-800 text-blue-400 font-mono text-xs px-3 py-1 rounded-pill border border-slate-700">
-                RESTRICTED SYSTEM ACCESS
+                CREATE ADMINISTRATOR ACCOUNT
             </span>
         </div>
 
         <div class="admin-login-box p-4 p-sm-5">
-            @if(session('success'))
-                <div class="alert alert-success text-xs py-2 rounded-xl mb-3">
-                    {{ session('success') }}
-                </div>
-            @endif
-
             @if($errors->any())
                 <div class="alert alert-danger text-xs py-2 rounded-xl mb-3">
-                    {{ $errors->first() }}
+                    <ul class="mb-0 ps-3">
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
                 </div>
             @endif
 
-            <form action="{{ route('admin.login.post') }}" method="POST">
+            <form action="{{ route('admin.register.post') }}" method="POST">
                 @csrf
 
                 <div class="mb-3">
-                    <label class="form-label text-xs fw-bold text-slate-300">Admin Email</label>
-                    <input type="email" name="email" value="{{ old('email') }}" class="form-control bg-slate-900 border-slate-700 text-white rounded-xl text-sm" placeholder="admin@example.com" required autofocus>
+                    <label class="form-label text-xs fw-bold text-slate-300">Administrator Full Name *</label>
+                    <input type="text" name="name" value="{{ old('name') }}" class="form-control bg-slate-900 border-slate-700 text-white rounded-xl text-sm" placeholder="e.g. Master Admin" required autofocus>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label text-xs fw-bold text-slate-300">Password</label>
+                    <label class="form-label text-xs fw-bold text-slate-300">Administrator Email *</label>
+                    <input type="email" name="email" value="{{ old('email') }}" class="form-control bg-slate-900 border-slate-700 text-white rounded-xl text-sm" placeholder="admin@domain.com" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label text-xs fw-bold text-slate-300">Password (Min 8 characters) *</label>
                     <input type="password" name="password" class="form-control bg-slate-900 border-slate-700 text-white rounded-xl text-sm" placeholder="••••••••" required>
                 </div>
 
-                <div class="form-check mb-4">
-                    <input class="form-check-input bg-slate-800 border-slate-700" type="checkbox" name="remember" id="rememberMe">
-                    <label class="form-check-label text-xs text-slate-400" for="rememberMe">
-                        Keep me signed in
-                    </label>
+                <div class="mb-4">
+                    <label class="form-label text-xs fw-bold text-slate-300">Confirm Password *</label>
+                    <input type="password" name="password_confirmation" class="form-control bg-slate-900 border-slate-700 text-white rounded-xl text-sm" placeholder="••••••••" required>
                 </div>
 
-                <button type="submit" class="btn btn-primary w-100 rounded-xl py-2.5 fw-bold text-sm shadow-lg mb-2">
-                    <i class="bi bi-box-arrow-in-right me-1"></i> Authenticate to Dashboard
+                <button type="submit" class="btn btn-primary w-100 rounded-xl py-2.5 fw-bold text-sm shadow-lg mb-3">
+                    <i class="bi bi-shield-plus me-1"></i> Register as Administrator
                 </button>
 
-                <div class="text-center text-xs text-slate-400 pt-3 border-top border-slate-800 mt-3">
-                    Need a new administrator account? 
-                    <a href="{{ route('admin.register') }}" class="text-blue-400 font-bold text-decoration-none ms-1">
-                        Register Admin
+                <div class="text-center text-xs text-slate-400 pt-3 border-top border-slate-800">
+                    Already have an administrator account? 
+                    <a href="{{ route('admin.login') }}" class="text-blue-400 font-bold text-decoration-none ms-1">
+                        Sign In Here
                     </a>
                 </div>
             </form>
