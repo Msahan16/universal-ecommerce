@@ -127,6 +127,14 @@ class CheckoutController extends Controller
         // Clear cart
         $this->cartService->clear();
 
+        // Send confirmation email
+        try {
+            \Illuminate\Support\Facades\Mail::to($order->customer_email)->send(new \App\Mail\OrderPlacedMail($order));
+        } catch (\Throwable $e) {
+            // Mail logging / fallback
+            \Illuminate\Support\Facades\Log::warning('Order confirmation email could not be sent: ' . $e->getMessage());
+        }
+
         return redirect()->route('orders.success', ['order_number' => $order->order_number])
             ->with('success', 'Your order has been placed successfully!');
     }
