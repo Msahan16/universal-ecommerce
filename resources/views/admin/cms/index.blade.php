@@ -151,6 +151,11 @@
                         <input class="form-check-input" type="checkbox" name="section_features_enabled" id="sec_val" {{ ($settings['section_features_enabled'] ?? '1') == '1' ? 'checked' : '' }}>
                         <label class="form-check-label text-xs fw-bold text-slate-800" for="sec_val">Value Proposition Strip</label>
                     </div>
+
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" name="section_quotation_enabled" id="sec_quo" {{ ($settings['section_quotation_enabled'] ?? '1') == '1' ? 'checked' : '' }}>
+                        <label class="form-check-label text-xs fw-bold text-slate-800" for="sec_quo">Ask for Quotation Section</label>
+                    </div>
                 </div>
             </div>
 

@@ -42,6 +42,13 @@ Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.s
 Route::get('/order/success/{order_number}', [OrderTrackingController::class, 'success'])->name('orders.success');
 Route::get('/order/track', [OrderTrackingController::class, 'track'])->name('orders.track');
 
+// Custom Quotations
+Route::get('/quotation/request', [\App\Http\Controllers\QuotationController::class, 'create'])->name('quotations.create');
+Route::post('/quotation/request', [\App\Http\Controllers\QuotationController::class, 'store'])->name('quotations.store');
+Route::get('/quotation/track', [\App\Http\Controllers\QuotationController::class, 'track'])->name('quotations.track');
+Route::get('/quotation/{reference}', [\App\Http\Controllers\QuotationController::class, 'show'])->name('quotations.show');
+Route::post('/quotation/{reference}/accept', [\App\Http\Controllers\QuotationController::class, 'accept'])->name('quotations.accept');
+
 /*
 |--------------------------------------------------------------------------
 | Authenticated Customer Routes
@@ -114,6 +121,12 @@ Route::middleware(['auth', 'admin'])
         // Website Customization / CMS
         Route::get('cms', [CmsController::class, 'index'])->name('cms.index');
         Route::post('cms', [CmsController::class, 'update'])->name('cms.update');
+
+        // Custom Quotations
+        Route::get('quotations', [\App\Http\Controllers\Admin\QuotationController::class, 'index'])->name('quotations.index');
+        Route::get('quotations/{quotation}', [\App\Http\Controllers\Admin\QuotationController::class, 'show'])->name('quotations.show');
+        Route::post('quotations/{quotation}/generate', [\App\Http\Controllers\Admin\QuotationController::class, 'generate'])->name('quotations.generate');
+        Route::post('quotations/{quotation}/status', [\App\Http\Controllers\Admin\QuotationController::class, 'updateStatus'])->name('quotations.status');
 
         // Customers
         Route::get('customers', [AdminCustomerController::class, 'index'])->name('customers.index');

@@ -144,6 +144,9 @@
                 <div class="d-none d-md-flex align-items-center gap-3 me-2">
                     <a href="{{ route('home') }}" class="nav-link fw-semibold px-2 {{ request()->routeIs('home') ? 'text-blue-600' : 'text-slate-700' }}">Home</a>
                     <a href="{{ route('shop.index') }}" class="nav-link fw-semibold px-2 {{ request()->routeIs('shop.*') ? 'text-blue-600' : 'text-slate-700' }}">Shop Catalog</a>
+                    @if(\App\Models\SiteSetting::get('section_quotation_enabled', '1') == '1')
+                        <a href="{{ route('quotations.create') }}" class="nav-link fw-semibold px-2 {{ request()->routeIs('quotations.*') ? 'text-blue-600' : 'text-slate-700' }}">Ask Quotation</a>
+                    @endif
                     <a href="{{ route('orders.track') }}" class="nav-link fw-semibold px-2 {{ request()->routeIs('orders.track') ? 'text-blue-600' : 'text-slate-700' }}">Track</a>
                 </div>
 

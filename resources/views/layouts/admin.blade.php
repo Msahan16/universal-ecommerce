@@ -143,6 +143,18 @@
                 </a>
             </li>
             <li>
+                <a href="{{ route('admin.quotations.index') }}" class="admin-nav-link {{ request()->routeIs('admin.quotations.*') ? 'active' : '' }}">
+                    <i class="bi bi-file-earmark-text"></i>
+                    <span class="flex-grow-1">Quotations</span>
+                    @php
+                        $pendingQuotes = \App\Models\Quotation::where('status', 'pending')->count();
+                    @endphp
+                    @if($pendingQuotes > 0)
+                        <span class="badge bg-blue-500 text-white rounded-pill font-bold">{{ $pendingQuotes }}</span>
+                    @endif
+                </a>
+            </li>
+            <li>
                 <a href="{{ route('admin.coupons.index') }}" class="admin-nav-link {{ request()->routeIs('admin.coupons.*') ? 'active' : '' }}">
                     <i class="bi bi-ticket-perforated"></i>
                     <span>Coupons & Deals</span>

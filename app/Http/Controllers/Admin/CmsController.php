@@ -26,6 +26,7 @@ class CmsController extends Controller
             'section_promo_enabled',
             'section_features_enabled',
             'section_testimonials_enabled',
+            'section_quotation_enabled',
         ];
 
         foreach ($checkboxKeys as $key) {

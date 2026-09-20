@@ -9,6 +9,7 @@
     $featuredEnabled = \App\Models\SiteSetting::get('section_featured_enabled', '1') == '1';
     $promoEnabled = \App\Models\SiteSetting::get('section_promo_enabled', '1') == '1';
     $featuresEnabled = \App\Models\SiteSetting::get('section_features_enabled', '1') == '1';
+    $quotationEnabled = \App\Models\SiteSetting::get('section_quotation_enabled', '1') == '1';
 @endphp
 
 <!-- Hero Section -->
@@ -329,6 +330,43 @@
                 </div>
             </div>
             @endforeach
+        </div>
+    </div>
+</section>
+@endif
+
+<!-- Ask Quotation Section (Controlled by Admin CMS) -->
+@if($quotationEnabled)
+<section class="py-5 my-4">
+    <div class="container">
+        <div class="card border-0 rounded-3xl overflow-hidden shadow-xl text-white p-4 p-md-5 position-relative" style="background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #1e293b 100%);">
+            <div class="position-absolute -right-20 -bottom-20 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <div class="row align-items-center g-4 position-relative" style="z-index: 2;">
+                <div class="col-lg-8">
+                    <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill bg-blue-400/20 border border-blue-400/30 text-blue-300 text-xs font-bold uppercase mb-3">
+                        <i class="bi bi-tools"></i>
+                        <span>Custom Fabrication & Bulk Sizing</span>
+                    </div>
+                    <h2 class="display-6 fw-extrabold text-white mb-2 tracking-tight">
+                        Need Custom Dimensions or Bulk Pricing?
+                    </h2>
+                    <p class="text-slate-300 fs-6 mb-0 pe-lg-4 leading-relaxed">
+                        Submit your custom requirements, profile measurements, vehicle specs, or blueprint documents. Our engineering estimators will review and generate an official customized quote directly for you.
+                    </p>
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                    <div class="d-flex flex-column gap-2 align-items-lg-end">
+                        <a href="{{ route('quotations.create') }}" class="btn btn-light btn-lg rounded-pill px-4 py-3 fw-bold shadow-lg d-inline-flex align-items-center gap-2">
+                            <i class="bi bi-file-earmark-text-fill text-blue-600"></i>
+                            <span>Request Custom Quotation</span>
+                        </a>
+                        <a href="{{ route('quotations.track') }}" class="text-slate-300 hover:text-white text-xs font-semibold text-decoration-none mt-1">
+                            <i class="bi bi-search me-1"></i> Track an Existing Quotation
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
