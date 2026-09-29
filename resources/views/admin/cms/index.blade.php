@@ -119,16 +119,48 @@
         <div class="col-lg-4">
             <!-- General Branding -->
             <div class="admin-card p-4 mb-4">
-                <h6 class="fw-bold text-slate-900 mb-3 text-sm uppercase tracking-wider">Store Identity</h6>
+                <h6 class="fw-bold text-slate-900 mb-3 text-sm uppercase tracking-wider">
+                    <i class="bi bi-patch-check text-blue-600 me-2"></i>Store Identity & Logo
+                </h6>
                 
                 <div class="mb-3">
-                    <label class="form-label text-xs fw-bold text-slate-700">Website Name</label>
-                    <input type="text" name="site_name" value="{{ $settings['site_name'] ?? 'Universal Store' }}" class="form-control rounded-xl border-slate-200 text-sm" required>
+                    <label class="form-label text-xs fw-bold text-slate-700">Website Name *</label>
+                    <input type="text" name="site_name" value="{{ $settings['site_name'] ?? 'MOTOX SPARES' }}" class="form-control rounded-xl border-slate-200 text-sm font-bold" required>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label text-xs fw-bold text-slate-700">Website Tagline</label>
-                    <input type="text" name="site_tagline" value="{{ $settings['site_tagline'] ?? 'Universal Commerce' }}" class="form-control rounded-xl border-slate-200 text-sm">
+                    <input type="text" name="site_tagline" value="{{ $settings['site_tagline'] ?? 'Genuine Motorbike Parts & Scooter Accessories' }}" class="form-control rounded-xl border-slate-200 text-sm">
+                </div>
+
+                <!-- Current Logo Preview -->
+                <div class="mb-3">
+                    <label class="form-label text-xs fw-bold text-slate-700">Current Logo Preview</label>
+                    @php
+                        $curLogo = $settings['logo'] ?? '';
+                    @endphp
+                    <div class="p-3 bg-slate-100 rounded-xl border border-slate-200 d-flex align-items-center justify-content-center" style="min-height: 70px;">
+                        @if($curLogo)
+                            <img src="{{ str_starts_with($curLogo, 'http') || str_starts_with($curLogo, '/') ? asset($curLogo) : asset('storage/' . $curLogo) }}" alt="Logo Preview" class="h-10 w-auto object-contain">
+                        @else
+                            <div class="text-xs text-slate-400 font-semibold d-flex align-items-center gap-1">
+                                <i class="bi bi-image"></i> Default Text/Icon Logo Active
+                            </div>
+                        @endif
+                    </div>
+                </div>
+
+                <!-- Upload New Logo File -->
+                <div class="mb-3">
+                    <label class="form-label text-xs fw-bold text-slate-700">Upload New Logo File</label>
+                    <input type="file" name="logo_file" class="form-control rounded-xl border-slate-200 text-sm" accept="image/png, image/jpeg, image/svg+xml, image/webp">
+                    <small class="text-xs text-slate-400 d-block mt-1">Recommended: SVG or PNG with transparent background (Height ~50px)</small>
+                </div>
+
+                <!-- Or specify Logo URL / Public Path -->
+                <div class="mb-0">
+                    <label class="form-label text-xs fw-bold text-slate-700">Or Logo URL / Public Path</label>
+                    <input type="text" name="logo" value="{{ $settings['logo'] ?? '' }}" class="form-control rounded-xl border-slate-200 text-sm font-mono" placeholder="/images/logo.svg or https://...">
                 </div>
             </div>
 

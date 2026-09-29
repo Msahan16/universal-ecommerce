@@ -38,11 +38,13 @@ class CmsController extends Controller
         if ($request->hasFile('logo_file')) {
             $path = $request->file('logo_file')->store('settings', 'public');
             SiteSetting::set('logo', $path, 'general', 'image');
+            unset($data['logo']);
         }
 
         if ($request->hasFile('hero_image_file')) {
             $path = $request->file('hero_image_file')->store('settings', 'public');
             SiteSetting::set('hero_image', $path, 'hero', 'image');
+            unset($data['hero_image']);
         }
 
         foreach ($data as $key => $value) {

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60" width="240" height="60" fill="none">
+    <defs>
+        <linearGradient id="motoGradW" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#3b82f6" />
+            <stop offset="100%" stop-color="#f59e0b" />
+        </linearGradient>
+    </defs>
+    
+    <!-- Icon Container -->
+    <g transform="translate(6, 6)">
+        <path d="M24 0 L44 11.5 L44 36.5 L24 48 L4 36.5 L4 11.5 Z" fill="#1e293b" stroke="url(#motoGradW)" stroke-width="2.5" />
+        <circle cx="16" cy="30" r="8" stroke="#60a5fa" stroke-width="2" fill="none" stroke-dasharray="3 2"/>
+        <circle cx="16" cy="30" r="3" fill="#60a5fa"/>
+        <circle cx="32" cy="30" r="8" stroke="#60a5fa" stroke-width="2" fill="none" stroke-dasharray="3 2"/>
+        <circle cx="32" cy="30" r="3" fill="#60a5fa"/>
+        <path d="M16 30 L22 18 L32 30" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M22 18 L29 16 L34 22" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M22 18 L18 14" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+        <polygon points="23,8 20,15 24,15 21,21 27,13 23,13" fill="#f59e0b"/>
+    </g>
+    
+    <!-- Text: MOTOX -->
+    <text x="62" y="33" font-family="'Plus Jakarta Sans', 'Segoe UI', sans-serif" font-weight="900" font-size="24" fill="#ffffff" letter-spacing="0.5">
+        MOTO<tspan fill="#38bdf8">X</tspan>
+    </text>
+    
+    <!-- Badge / Subtitle: SPARE PARTS -->
+    <rect x="62" y="38" width="138" height="15" rx="3.5" fill="#3b82f6" />
+    <text x="66" y="49" font-family="'Plus Jakarta Sans', 'Segoe UI', sans-serif" font-weight="800" font-size="8.5" fill="#ffffff" letter-spacing="1.5">
+        GENUINE SPARES &amp; ACCS
+    </text>
+</svg>

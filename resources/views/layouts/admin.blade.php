@@ -83,12 +83,21 @@
     <aside class="admin-sidebar d-flex flex-column p-3 text-white flex-shrink-0">
         <!-- Brand Title -->
         <a href="{{ route('admin.dashboard') }}" class="d-flex align-items-center gap-2 pb-3 mb-3 border-bottom border-slate-800 text-white text-decoration-none">
-            <div class="w-9 h-9 rounded-lg bg-blue-600 text-white d-flex align-items-center justify-content-center shadow">
-                <i class="bi bi-shield-lock-fill"></i>
-            </div>
+            @php
+                $adminLogo = \App\Models\SiteSetting::get('logo');
+            @endphp
+            @if(file_exists(public_path('images/logo-white.svg')) && ($adminLogo == '/images/logo.svg' || $adminLogo == 'images/logo.svg'))
+                <img src="{{ asset('images/logo-white.svg') }}" alt="Logo" class="h-8 w-auto object-contain">
+            @elseif($adminLogo)
+                <img src="{{ str_starts_with($adminLogo, 'http') || str_starts_with($adminLogo, '/') ? asset($adminLogo) : asset('storage/' . $adminLogo) }}" alt="Logo" class="h-8 w-auto object-contain bg-white/10 rounded p-0.5">
+            @else
+                <div class="w-9 h-9 rounded-lg bg-blue-600 text-white d-flex align-items-center justify-content-center shadow">
+                    <i class="bi bi-shield-lock-fill"></i>
+                </div>
+            @endif
             <div>
                 <span class="fs-6 fw-bold tracking-tight d-block leading-tight">Admin Console</span>
-                <span class="text-xs text-blue-400 font-semibold">{{ \App\Models\SiteSetting::get('site_name', 'Universal E-Com') }}</span>
+                <span class="text-xs text-blue-400 font-semibold">{{ \App\Models\SiteSetting::get('site_name', 'MOTOX SPARES') }}</span>
             </div>
         </a>
 

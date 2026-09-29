@@ -115,17 +115,24 @@
         <div class="container">
             <!-- Brand Logo / Name -->
             <a class="navbar-brand d-flex align-items-center gap-2 fw-extrabold text-slate-900" href="{{ route('home') }}">
-                <div class="w-10 h-10 rounded-xl bg-blue-600 text-white d-flex align-items-center justify-content-center shadow-sm">
-                    <i class="bi bi-box-seam-fill text-xl"></i>
-                </div>
-                <div class="d-flex flex-column">
-                    <span class="fs-4 fw-bold tracking-tight text-slate-900 leading-none">
-                        {{ \App\Models\SiteSetting::get('site_name', 'UNIVERSAL') }}
-                    </span>
-                    <span class="text-xs text-slate-500 font-semibold tracking-wider uppercase">
-                        {{ \App\Models\SiteSetting::get('site_tagline', 'E-COMMERCE') }}
-                    </span>
-                </div>
+                @php
+                    $siteLogo = \App\Models\SiteSetting::get('logo');
+                @endphp
+                @if($siteLogo)
+                    <img src="{{ str_starts_with($siteLogo, 'http') || str_starts_with($siteLogo, '/') ? asset($siteLogo) : asset('storage/' . $siteLogo) }}" alt="{{ \App\Models\SiteSetting::get('site_name', 'MOTOX') }}" class="h-10 w-auto object-contain">
+                @else
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 text-white d-flex align-items-center justify-content-center shadow-sm">
+                        <i class="bi bi-speedometer2 text-xl"></i>
+                    </div>
+                    <div class="d-flex flex-column">
+                        <span class="fs-4 fw-bold tracking-tight text-slate-900 leading-none">
+                            {{ \App\Models\SiteSetting::get('site_name', 'MOTOX SPARES') }}
+                        </span>
+                        <span class="text-xs text-slate-500 font-semibold tracking-wider uppercase">
+                            {{ \App\Models\SiteSetting::get('site_tagline', 'GENUINE MOTO PARTS') }}
+                        </span>
+                    </div>
+                @endif
             </a>
 
             <!-- Search Bar (Desktop) -->
@@ -240,12 +247,21 @@
                 <!-- Column 1: Brand & Bio -->
                 <div class="col-lg-4 col-md-6">
                     <div class="d-flex align-items-center gap-2 mb-3">
-                        <div class="w-10 h-10 rounded-xl bg-blue-600 text-white d-flex align-items-center justify-content-center shadow-sm">
-                            <i class="bi bi-box-seam-fill text-xl"></i>
-                        </div>
-                        <span class="fs-4 fw-bold text-white tracking-tight">
-                            {{ \App\Models\SiteSetting::get('site_name', 'UNIVERSAL') }}
-                        </span>
+                        @php
+                            $footerLogo = \App\Models\SiteSetting::get('logo');
+                        @endphp
+                        @if(file_exists(public_path('images/logo-white.svg')))
+                            <img src="{{ asset('images/logo-white.svg') }}" alt="{{ \App\Models\SiteSetting::get('site_name', 'MOTOX') }}" class="h-10 w-auto object-contain">
+                        @elseif($footerLogo)
+                            <img src="{{ str_starts_with($footerLogo, 'http') || str_starts_with($footerLogo, '/') ? asset($footerLogo) : asset('storage/' . $footerLogo) }}" alt="{{ \App\Models\SiteSetting::get('site_name', 'MOTOX') }}" class="h-10 w-auto object-contain bg-white rounded-lg p-1">
+                        @else
+                            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 text-white d-flex align-items-center justify-content-center shadow-sm">
+                                <i class="bi bi-speedometer2 text-xl"></i>
+                            </div>
+                            <span class="fs-4 fw-bold text-white tracking-tight">
+                                {{ \App\Models\SiteSetting::get('site_name', 'MOTOX SPARES') }}
+                            </span>
+                        @endif
                     </div>
                     <p class="text-slate-400 text-sm pe-lg-4 leading-relaxed">
                         {{ \App\Models\SiteSetting::get('hero_subtitle', 'Leading multi-industry e-commerce platform offering top-tier architectural systems, materials, and precision hardware solutions.') }}
